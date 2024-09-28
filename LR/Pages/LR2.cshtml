@@ -1,0 +1,71 @@
+﻿@page
+@model RestaurantApp.Pages.MenuModel
+@{
+    ViewData["Title"] = "Restaurant Menu";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@foreach (var category in Model.Menu)
+{
+    <div class="category mt-4">
+        <h3>@category.Name</h3>
+        <ul class="list-group">
+            @foreach (var dish in category.Dishes)
+            {
+                <li class="list-group-item d-flex align-items-center">
+                    <div class="image-container">
+                        <img src="@dish.ImageUrl" alt="@dish.Name" class="img-thumbnail" />
+                    </div>
+                    <div class="dish-info flex-grow-1">
+                        <div class="dish-header d-flex justify-content-between">
+                            <span><strong>@dish.Name</strong></span>
+                            <span class="text-muted price">$@dish.Price.ToString("F2")</span>
+                        </div>
+                        <p class="mb-1">@dish.Description</p>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+}
+
+<style>
+    .list-group-item {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        border: 1px solid #ddd;
+    }
+
+    .dish-info {
+        flex-grow: 1;
+    }
+
+    .price {
+        margin-left: auto;
+        font-weight: bold;
+    }
+
+    .category h3 {
+        border-bottom: 2px solid #333;
+        padding-bottom: 5px;
+    }
+
+    .image-container {
+        width: 150px; 
+        height: 150px; 
+        max-width: 150px; 
+        max-height: 150px;
+        overflow: hidden; 
+        border-radius: 5px; 
+        margin-right: 15px; 
+    }
+
+    img {
+        width: 100%; 
+        height: 100%; 
+        object-fit: cover; 
+    }
+</style>
+

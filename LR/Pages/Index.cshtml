@@ -1,0 +1,26 @@
+﻿@page
+@model BinaryToDecimalApp.Pages.IndexModel
+@{
+    ViewData["Title"] = "Binary to Decimal Converter";
+}
+
+<h2>Binary to Decimal Converter</h2>
+
+<form method="post">    
+    <div class="form-group">
+        <label for="binaryInput">Enter Binary Number:</label>
+        <input type="text" id="binaryInput" name="BinaryInput" class="form-control" value="@Model.BinaryInput" />
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Convert</button>
+
+</form>
+
+@if (!string.IsNullOrEmpty(Model.ResultMessage))
+{
+    var alertClass = Model.ResultMessage.Contains("Please enter a valid binary number") ? "alert-danger" : "alert-info";
+
+    <div class="alert @alertClass mt-2">
+        <strong>Result:</strong> @Model.ResultMessage
+    </div>
+}
+
